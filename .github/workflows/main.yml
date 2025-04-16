@@ -44,7 +44,4 @@ jobs:
           files: ${{ env.MOD }}
           token: ${{ github.token }}
           body: |
-
-
-            ----------------------
-            `canary_upgrade=0.0`
+            - Prepare for release
