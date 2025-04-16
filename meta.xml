@@ -1,0 +1,6 @@
+<root>
+  <id>wotstat.lootbox-open-multiplier</id>
+  <version>{{VERSION}}</version>
+  <name>wotstat.lootbox-open-multiplier</name>
+  <description>Multiply lootbox open count by WotStat</description>
+</root>
