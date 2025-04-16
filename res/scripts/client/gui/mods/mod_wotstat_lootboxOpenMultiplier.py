@@ -51,8 +51,6 @@ def newInit(self, lootBoxItem, count=1, keyID=0):
     
   count = min(count, lootBoxItem.getInventoryCount())
   debug('Init: lootBoxItem=%s, count=%d, keyID=%d' % (lootBoxItem, count, keyID))
-  
-  # itemsCache.items.tokens.getLootBoxByID(320022).getInventoryCount()
 
   oldInit(self, lootBoxItem, count, keyID)
   self.targetCount = count
@@ -101,7 +99,7 @@ def init():
   LootBoxOpenProcessor._request = newRequest
   LootBoxOpenProcessor._response = newResponse
   
-  print('[MOD_WOTSTAT_LOOTBOX_MUL] mod_wotstat_lootboxOpenMultiplier v%s loaded' % VERSION)
+  log('[MOD_WOTSTAT_LOOTBOX_MUL] mod_wotstat_lootboxOpenMultiplier v%s loaded' % VERSION)
 
 def fini():
   global oldInit, oldRequest, oldResponse
