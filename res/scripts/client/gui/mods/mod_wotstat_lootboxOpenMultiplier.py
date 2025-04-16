@@ -44,10 +44,10 @@ def newInit(self, lootBoxItem, count=1, keyID=0):
     count = 20
       
   if(BigWorld.isKeyDown(Keys.KEY_LCONTROL)):
-    count = 3
+    count = 50
     
   if(BigWorld.isKeyDown(Keys.KEY_LSHIFT)):
-    count = 5
+    count = 100
     
   count = min(count, lootBoxItem.getInventoryCount())
   debug('Init: lootBoxItem=%s, count=%d, keyID=%d' % (lootBoxItem, count, keyID))
