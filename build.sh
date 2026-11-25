@@ -42,7 +42,7 @@ folder=$MOD_NAME"_$v.wotmod"
 
 rm -rf $folder
 
-zip -dvr -0 -X $folder res -i "*.pyc"
+zip -vr -0 -X $folder res -i "*.pyc" "*.js" "*.css"
 zip -vr -0 -X $folder meta.xml
 # zip -vr -0 -X $folder res -i "*.png"
 

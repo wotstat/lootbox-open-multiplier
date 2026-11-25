@@ -1,0 +1,21 @@
+.wotstat-unselected [class*="CheckButton_check_"] {
+    visibility: hidden;
+}
+
+.wotstat-unselected [class*="CheckButton_border__checked_"],
+.wotstat-unselected [class*="CheckButton_bg__checked_"] {
+    background-image: none;
+}
+
+.wotstat-unselected:hover [class*="CheckButton_border__checked_"] {
+    background-image: url('R.images.gui_lootboxes.gui.maps.storage.border_checkbox_selected');
+}
+
+.wotstat-unselected:hover [class*="CheckButton_bg__checked_"] {
+    background-image: url('R.images.gui_lootboxes.gui.maps.storage.bg_checkbox_selected');
+}
+
+[data-wotstat-count].wotstat-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
