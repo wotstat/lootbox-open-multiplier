@@ -11,7 +11,7 @@ from gui.impl.pub.dialog_window import DialogButtons
 from gui.shared.gui_items.processors.loot_boxes import LootBoxOpenProcessor
 from gui_lootboxes.gui.impl.lobby.gui_lootboxes import lootboxes_short_stats_view
 from gui_lootboxes.gui.impl.lobby.gui_lootboxes.lootboxes_storage import LootBoxesStorageView
-from gui_lootboxes.gui.storage_context.context import States, ViewEvents
+from gui_lootboxes.gui.storage_context.context import States
 from AccountCommands import RES_SUCCESS
 from functools import partial
 from constants import REQUEST_COOLDOWN
@@ -38,7 +38,9 @@ pendingConfirmation = None
 
 
 class ExplicitCount(int):
-  pass
+  def __int__(self):
+    # The native storage handler converts the count with int() before posting its event.
+    return self
 
 def log(msg):
   print('[MOD_WOTSTAT_LOOTBOX_MUL] %s' % msg)
@@ -100,7 +102,9 @@ def mergeExtData(extData1, extData2, openCount):
 def newInit(self, lootBoxItem, count=1, keyID=0):
   # type: (LootBoxOpenProcessor, object, int, int) -> None
   
-  if not isinstance(count, ExplicitCount):
+  if isinstance(count, ExplicitCount):
+    count = int.__int__(count)
+  else:
     alt = BigWorld.isKeyDown(Keys.KEY_LALT)
     if BigWorld.isKeyDown(Keys.KEY_LSHIFT):
       count = 250 if alt else 100
@@ -199,8 +203,7 @@ def getSelectedLootBox(view, lootBoxID, count):
   return None
 
 def openSelectedCount(view, lootBox, count):
-  context = view._LootBoxesStorageView__context
-  context.postViewEvent(ViewEvents.ON_OPEN_CLICK, (lootBox, ExplicitCount(count), 0))
+  return oldOpenLootBoxes(view, {'lootBoxID': lootBox.getID(), 'count': ExplicitCount(count)})
 
 @th_async
 def confirmOpenCount(view, lootBoxID, count):
